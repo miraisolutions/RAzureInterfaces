@@ -1,0 +1,83 @@
+---
+title: "2. Azure setup"
+output: html_notebook
+---
+
+# Azure setup
+<br>
+We will now use the package `doAzureParallel` to interact with an Azure subscription.
+
+You will need to have a valid Azure subscription with access to the resources we will use in this example: an Azure Batch account and a storage account.
+
+First thing is to install the package and its dependency `rAzureBatch`
+```{r eval = FALSE}
+devtools::install_github("Azure/rAzureBatch", ref = "v0.7.0") 
+devtools::install_github("Azure/doAzureParallel", ref = "v0.8.0") 
+library(doAzureParallel)
+```
+
+## Azure credentials
+<br>
+Generate a credentials configuration file (template)
+```{r}
+generateCredentialsConfig("credentials.json")
+```
+
+<br>
+Edit the file with your own Azure credentials:
+
+- Batch account name
+- Batch account key: Primary access key
+- Batch account URL
+- Storage account name
+- Storage account key
+
+You find the above in the _Keys_ section of your Batch and Storage accounts in the [Azure portal](https://portal.azure.com/)
+
+<br>
+Next, set your credentials in the current R session.
+```{r}
+setCredentials("credentials.json")
+```
+<br>
+If successful, you can see a new option with information of your Azure account.
+```{r eval = FALSE}
+getOption("az_config")
+```
+
+<br>
+
+## Azure Batch pool
+
+<br>
+Generate a cluster configuration file (template)
+```{r}
+generateClusterConfig("cluster.json")
+```
+<br>
+Edit the cluster configuration file with your desired configuration.
+
+Create your cluster if it does not exist; this takes a few minutes. Alternatively get your cluster configuration from the Batch account
+```{r}
+# Get configuration from Azure
+cluster <- getCluster("raipool")
+# Create new cluster from configuration file
+cluster <- makeCluster("cluster.json") 
+```
+
+Beware of open issue [#330](https://github.com/Azure/doAzureParallel/issues/330) in package `doAzureParallel`. Registering a cluster that has been obtained with `getCluster` results in a not obvious misconfiguration of the cluster. In current version, this issue can be worked around by creating the cluster (again) before registering. That is, running the chunk above. The cluster will in fact not be re-created, but the metadata will be fixed.
+
+Finally, register your Azure cluster as the parallel backend for `foreach`
+```{r}
+registerDoAzureParallel(cluster)
+```
+
+Check that you the cluster is available
+```{r}
+# Number of execution workers currently registered in the doPar backend
+getDoParWorkers()
+# Hello world
+foreach(i=1:5) %dopar% sprintf("Hello World from node %s", i)
+```
+
+

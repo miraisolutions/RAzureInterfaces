@@ -1,0 +1,78 @@
+---
+title: "Parallel programming with R and Azure Batch"
+output: 
+    html_notebook:
+        toc: true
+        toc_float: true
+        toc_depth: 2
+---
+<br>
+ 
+# Embarrasingly Parallel Problems
+<br>
+Also called **perfectly parallel**, these are the most simple cases for parallel computing: 
+
+- Similar tasks are repeated many times
+    - Iterations in a loop construct, chunks of data
+- Calculations are independent of each other
+- Little or no manipulation needed to create parallel tasks
+- Examples:  
+    - Independent Monte Carlo simulations  
+    - Analysis by groups of data  
+  
+---
+Example: Monte Carlo Simulation, random walk of an asset price
+```{r}
+getClosingPrice <- function(opening_price=100, mean_change=1.001, volatility=0.01, days=1825) { 
+    movement <- rnorm(days, mean = mean_change, sd = volatility) 
+    path <- cumprod(c(opening_price, movement)) 
+    closingPrice <- path[days] 
+    return(closingPrice) 
+}
+```
+<br>
+
+To run multiple independent simulations, we can use one of the many looping constructs that come with R, like `for`, `while` or the `apply` family.  
+
+
+We use `replicate` to run repeatedly in a single thread: 
+```{r}
+n <- 100000
+start_s <- Sys.time() 
+closingPrices_s <- replicate(n, getClosingPrice()) 
+end_s <- Sys.time()
+difftime(end_s, start_s)
+hist(closingPrices_s)
+```
+
+
+```{r child = '01_foreach.Rmd'}
+```
+
+```{r child = '02_Azure_setup.Rmd'}
+```
+
+```{r child = '03_Azure_parallel.Rmd'}
+```
+
+# Monitoring and Managing the Azure environment
+
+2.1- Azure file storage
+2.2.- Job preparation and release tasks
+2.3.- Run multiple tasks in parallel within each compute node. https://docs.microsoft.com/en-us/azure/batch/batch-parallel-node-tasks
+2.4.- Job preparation and release tasks. https://docs.microsoft.com/en-us/azure/batch/batch-job-prep-release
+
+
+- tracking jobs and tasks
+- debugging
+- checking the environment
+- enabling/disabling nodes
+
+
+```{r child = '04_customize_R_runtime.Rmd'}
+```
+
+```{r child = '05_Azure_storage_and_distribution.Rmd'}
+```
+
+# References
