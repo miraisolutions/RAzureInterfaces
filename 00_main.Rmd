@@ -55,24 +55,5 @@ hist(closingPrices_s)
 ```{r child = '03_Azure_parallel.Rmd'}
 ```
 
-# Monitoring and Managing the Azure environment
-
-2.1- Azure file storage
-2.2.- Job preparation and release tasks
-2.3.- Run multiple tasks in parallel within each compute node. https://docs.microsoft.com/en-us/azure/batch/batch-parallel-node-tasks
-2.4.- Job preparation and release tasks. https://docs.microsoft.com/en-us/azure/batch/batch-job-prep-release
-
-
-- tracking jobs and tasks
-- debugging
-- checking the environment
-- enabling/disabling nodes
-
-
 ```{r child = '04_customize_R_runtime.Rmd'}
 ```
-
-```{r child = '05_Azure_storage_and_distribution.Rmd'}
-```
-
-# References

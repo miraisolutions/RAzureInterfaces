@@ -1,0 +1,12 @@
+---
+title: "3. Perfectly parallel computation on Azure Batch"
+output: html_notebook
+---
+
+# Accessing the Azure Storage
+
+## Mounting Azure File Shares
+
+
+## Distributed computing
+

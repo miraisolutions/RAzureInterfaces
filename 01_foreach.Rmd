@@ -5,15 +5,17 @@ output: html_notebook
 
 # The package `foreach`
 ## The foreach looping construct
-<br>
+
 The package [foreach](https://cran.r-project.org/web/packages/foreach/vignettes/foreach.html) introduces a looping construct that supports parallel execution
 
 The `foreach` loop looks similar to a `for` loop, but is implemented using a binary operator, called `%do%`. Unlike `for`, it returns a value
+
+
 ```{r}
 library(foreach)
 foreach(i=1:5) %do% sprintf("Hello from iteration %s", i)
 ```
-<br>
+
 
 The loop `foreach` with the operator `%do%` runs locally and single threaded, pretty much like `for`. This is essentially used for intermediate local tests.
 
@@ -29,7 +31,7 @@ There are multiple packages that implement functionality to create and register 
 - `future::makeClusterMPI` Message Passing Interface (MPI) cluster
 - `doAzureParallel::registerDoAzureParallel`
 
----
+
 Example: local cluster with `doParallel`:
 ```{r}
 library(doParallel)
@@ -46,6 +48,7 @@ end_p <- Sys.time()
 difftime(end_p, start_p)
 hist(closingPrices_p)
 ```
+
 
 
 ## Combining results

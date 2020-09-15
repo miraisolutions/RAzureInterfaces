@@ -1,0 +1,37 @@
+---
+title: "4. R environment in Azure Batch"
+output: html_notebook
+---
+
+# R runtime environment in Azure Batch
+
+## Installing packages for your parallel runs
+
+```{r echo = FALSE}
+# Disable verbose logging
+setVerbose(FALSE)
+setHttpTraffic(FALSE)
+```
+
+Our last call to Azure Batch failed because the package `randomForest` was being used, but was not available on the R runtime environment on Azure Batch. It can be installed on the fly using the `foreach` parameter `.packages`
+
+```{r}
+rf <- foreach(ntree = rep(200, 5), .combine = combine, .packages = "randomForest") %dopar%
+    randomForest(x, y, ntree = ntree)
+rf
+```
+
+
+Note that every time we execute the above chunk, a new installation of the package `randomForest` is triggered.
+
+## Runtime environment of the `doAzureParallel` cluster
+<br>
+The R code that we ship to run on the Azure Batch cluster runs on a docker container. This ensures a stable runtime environment: all jobs running on the same node run on a new container. The jobs are independent from each other, thus the past jobs history does not affect new jobs, even if previous jobs did things like installing new packages.
+
+A docker image is specified at the time of creating the cluster, in the file `cluster.json`. The default image is "rocker/tidyverse:latest".
+
+## Customizing the docker image for the R runtime
+
+Installing packages at runtime, like in the last example, is not a convenient practice. Recurrent packages should rather be added to the docker image used for all containers. `doAzureParallel` makes this easy by allowing specification of packages in `cluster.json`. Various sources are allowed: cran, github, bioconductor.
+
+It is also possible to specify a custom container image altogether.

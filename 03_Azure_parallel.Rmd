@@ -1,0 +1,56 @@
+---
+title: "3. R parallel computing on Azure Batch"
+output: html_notebook
+---
+
+# Parallel computing on Azure Batch
+
+## Parallel Random Forest
+
+<br>
+Let’s take random forest as an example of an operation that can take a while to execute. Let’s say our inputs are the matrix x, and the factor y:
+```{r}
+x <- matrix(runif(500), 100)
+y <- gl(2, 50)
+```
+
+Lets create a random forest model with 1000 trees. We will plit up the problem into 5 pieces, with the `ntree` argument set to 200. The package `randomForest` comes with a function called `combine` that combines the resulting `randomForest` objects.
+
+We first run it locally. 
+```{r}
+library(randomForest)
+rf <- foreach(ntree = rep(200, 5), .combine = combine) %do%
+    randomForest(x, y, ntree = ntree)
+rf
+```
+<br>
+Now lets run the same on the registered parallel backend. What about the package `randomForest`? Is it in the Azure Batch pool?
+```{r}
+rf <- foreach(ntree = rep(200, 5), .combine = combine) %dopar%
+    randomForest(x, y, ntree = ntree)
+```
+
+
+## Diagnostics
+
+`doAzureParallel` offers minimum functionality for diagnostics
+```{r eval = FALSE}
+setVerbose(TRUE)
+setHttpTraffic(TRUE)
+rf <- foreach(ntree = rep(200, 5), .combine = combine) %dopar%
+    randomForest(x, y, ntree = ntree)
+```
+
+Some metadata can be fetched from Azure, but for details of the error we would have to The Azure Portal or Azure Batch explorer.
+```{r eval = FALSE}
+doAzureParallel::getJob("job20200915212934")
+```
+
+The [doAzureParallel troubleshooting documentation in github](https://github.com/Azure/doAzureParallel/blob/master/docs/90-troubleshooting.md) can be helpful. One can also enable verbose logging 
+
+
+## Monitoring and Managing the Azure environment
+
+`doAzureParallel` offers very limited functionality for monitoring and managing the Azure environment. The Azure Portal or specific tools like Azure Batch Explorer and Azure Storate Explorer (or custom tools using Azure APIs) should be used together for monitoring and management.
+
+Special remark should be made about the status of the Azure Batch cluster. This cannot be changed from the R session with `doAzureParallel`. The cluster nodes are created in status "Enable" (Idle), and thus they are a running cost until they are disabled, or deleted. It is possible to delete a cluster with `doAzureParallel`
