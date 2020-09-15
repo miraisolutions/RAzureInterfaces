@@ -57,3 +57,6 @@ hist(closingPrices_s)
 
 ```{r child = '04_customize_R_runtime.Rmd'}
 ```
+
+```{r child = '05_Azure_storage_and_distribution.Rmd'}
+```
