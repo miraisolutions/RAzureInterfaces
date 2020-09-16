@@ -16,7 +16,7 @@ setHttpTraffic(FALSE)
 Our last call to Azure Batch failed because the package `randomForest` was being used, but was not available on the R runtime environment on Azure Batch. It can be installed on the fly using the `foreach` parameter `.packages`
 
 ```{r}
-rf <- foreach(ntree = rep(200, 5), .combine = combine, .packages = "randomForest") %dopar%
+rf <- foreach(ntree = rep(10000, 10), .combine = combine, .packages = "randomForest") %dopar%
     randomForest(x, y, ntree = ntree)
 rf
 ```

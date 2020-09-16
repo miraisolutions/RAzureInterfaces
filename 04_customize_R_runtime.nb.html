@@ -1760,13 +1760,13 @@ summary {
 <p>Our last call to Azure Batch failed because the package <code>randomForest</code> was being used, but was not available on the R runtime environment on Azure Batch. It can be installed on the fly using the <code>foreach</code> parameter <code>.packages</code></p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmYgPC0gZm9yZWFjaChudHJlZSA9IHJlcCgyMDAsIDUpLCAuY29tYmluZSA9IGNvbWJpbmUsIC5wYWNrYWdlcyA9IFwicmFuZG9tRm9yZXN0XCIpICVkb3BhciVcbiAgICByYW5kb21Gb3Jlc3QoeCwgeSwgbnRyZWUgPSBudHJlZSlcbmBgYCJ9 -->
-<pre class="r"><code>rf &lt;- foreach(ntree = rep(200, 5), .combine = combine, .packages = &quot;randomForest&quot;) %dopar%
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmYgPC0gZm9yZWFjaChudHJlZSA9IHJlcCgxMDAwMCwgMTApLCAuY29tYmluZSA9IGNvbWJpbmUsIC5wYWNrYWdlcyA9IFwicmFuZG9tRm9yZXN0XCIpICVkb3BhciVcbiAgICByYW5kb21Gb3Jlc3QoeCwgeSwgbnRyZWUgPSBudHJlZSlcbmBgYCJ9 -->
+<pre class="r"><code>rf &lt;- foreach(ntree = rep(10000, 10), .combine = combine, .packages = &quot;randomForest&quot;) %dopar%
     randomForest(x, y, ntree = ntree)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuSWQ6IGpvYjIwMjAwOTE1MjIzODEwXG5jaHVua1NpemU6IDFcbmVuYWJsZUNsb3VkQ29tYmluZTogVFJVRVxucGFja2FnZXM6IFxuXHRyYW5kb21Gb3Jlc3Q7IFxuZXJyb3JIYW5kbGluZzogc3RvcFxud2FpdDogVFJVRVxuYXV0b0RlbGV0ZUpvYjogVFJVRVxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuXG5TdWJtaXR0aW5nIHRhc2tzICgxLzUpXG5TdWJtaXR0aW5nIHRhc2tzICgyLzUpXG5TdWJtaXR0aW5nIHRhc2tzICgzLzUpXG5TdWJtaXR0aW5nIHRhc2tzICg0LzUpXG5TdWJtaXR0aW5nIHRhc2tzICg1LzUpXG5TdWJtaXR0aW5nIG1lcmdlIHRhc2suIC4gLlxuSm9iIFByZXBhcmF0aW9uIFN0YXR1czogUGFja2FnZShzKSBiZWluZyBpbnN0YWxsZWQuXG5XYWl0aW5nIGZvciB0YXNrcyB0byBjb21wbGV0ZS4gLiAuXG5cbnwgUHJvZ3Jlc3M6IDQwLjAwJSAoMi81KSB8IFJ1bm5pbmc6IDMgfCBRdWV1ZWQ6IDAgfCBDb21wbGV0ZWQ6IDIgfCBGYWlsZWQ6IDAgfFxufCBQcm9ncmVzczogMTAwLjAwJSAoNS81KSB8IFJ1bm5pbmc6IDAgfCBRdWV1ZWQ6IDAgfCBDb21wbGV0ZWQ6IDUgfCBGYWlsZWQ6IDAgfFxuVGFza3MgaGF2ZSBjb21wbGV0ZWQuIE1lcmdpbmcgcmVzdWx0cy4gQ29tcGxldGVkLlxuIn0= -->
-<pre><code>=====================================================================================
-Id: job20200915223810
+<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbklkOiBqb2IyMDIwMDkxNjEwNDYzMlxuY2h1bmtTaXplOiAxXG5lbmFibGVDbG91ZENvbWJpbmU6IFRSVUVcbnBhY2thZ2VzOiBcblx0cmFuZG9tRm9yZXN0OyBcbmVycm9ySGFuZGxpbmc6IHN0b3BcbndhaXQ6IFRSVUVcbmF1dG9EZWxldGVKb2I6IFRSVUVcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cblN1Ym1pdHRpbmcgdGFza3MgKDEvMTApXG5TdWJtaXR0aW5nIHRhc2tzICgyLzEwKVxuU3VibWl0dGluZyB0YXNrcyAoMy8xMClcblN1Ym1pdHRpbmcgdGFza3MgKDQvMTApXG5TdWJtaXR0aW5nIHRhc2tzICg1LzEwKVxuU3VibWl0dGluZyB0YXNrcyAoNi8xMClcblN1Ym1pdHRpbmcgdGFza3MgKDcvMTApXG5TdWJtaXR0aW5nIHRhc2tzICg4LzEwKVxuU3VibWl0dGluZyB0YXNrcyAoOS8xMClcblN1Ym1pdHRpbmcgdGFza3MgKDEwLzEwKVxuU3VibWl0dGluZyBtZXJnZSB0YXNrLiAuIC5cbkpvYiBQcmVwYXJhdGlvbiBTdGF0dXM6IFBhY2thZ2UocykgYmVpbmcgaW5zdGFsbGVkLlxuV2FpdGluZyBmb3IgdGFza3MgdG8gY29tcGxldGUuIC4gLlxuXG58IFByb2dyZXNzOiAwLjAwJSAoMC8xMCkgfCBSdW5uaW5nOiAxMCB8IFF1ZXVlZDogMCB8IENvbXBsZXRlZDogMCB8IEZhaWxlZDogMCB8XG58IFByb2dyZXNzOiAxMDAuMDAlICgxMC8xMCkgfCBSdW5uaW5nOiAwIHwgUXVldWVkOiAwIHwgQ29tcGxldGVkOiAxMCB8IEZhaWxlZDogMCB8XG5UYXNrcyBoYXZlIGNvbXBsZXRlZC4gTWVyZ2luZyByZXN1bHRzLi4uLi4gQ29tcGxldGVkLlxuIn0= -->
+<pre><code>=============================================================================================================================
+Id: job20200916104632
 chunkSize: 1
 enableCloudCombine: TRUE
 packages: 
@@ -1774,30 +1774,35 @@ packages:
 errorHandling: stop
 wait: TRUE
 autoDeleteJob: TRUE
-=====================================================================================
+=============================================================================================================================
 
-Submitting tasks (1/5)
-Submitting tasks (2/5)
-Submitting tasks (3/5)
-Submitting tasks (4/5)
-Submitting tasks (5/5)
+Submitting tasks (1/10)
+Submitting tasks (2/10)
+Submitting tasks (3/10)
+Submitting tasks (4/10)
+Submitting tasks (5/10)
+Submitting tasks (6/10)
+Submitting tasks (7/10)
+Submitting tasks (8/10)
+Submitting tasks (9/10)
+Submitting tasks (10/10)
 Submitting merge task. . .
 Job Preparation Status: Package(s) being installed.
 Waiting for tasks to complete. . .
 
-| Progress: 40.00% (2/5) | Running: 3 | Queued: 0 | Completed: 2 | Failed: 0 |
-| Progress: 100.00% (5/5) | Running: 0 | Queued: 0 | Completed: 5 | Failed: 0 |
-Tasks have completed. Merging results. Completed.</code></pre>
+| Progress: 0.00% (0/10) | Running: 10 | Queued: 0 | Completed: 0 | Failed: 0 |
+| Progress: 100.00% (10/10) | Running: 0 | Queued: 0 | Completed: 10 | Failed: 0 |
+Tasks have completed. Merging results..... Completed.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmZcbmBgYCJ9 -->
 <pre class="r"><code>rf</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuIHJhbmRvbUZvcmVzdCh4ID0geCwgeSA9IHksIG50cmVlID0gbnRyZWUpIFxuICAgICAgICAgICAgICAgVHlwZSBvZiByYW5kb20gZm9yZXN0OiBjbGFzc2lmaWNhdGlvblxuICAgICAgICAgICAgICAgICAgICAgTnVtYmVyIG9mIHRyZWVzOiAxMDAwXG5Oby4gb2YgdmFyaWFibGVzIHRyaWVkIGF0IGVhY2ggc3BsaXQ6IDJcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuIHJhbmRvbUZvcmVzdCh4ID0geCwgeSA9IHksIG50cmVlID0gbnRyZWUpIFxuICAgICAgICAgICAgICAgVHlwZSBvZiByYW5kb20gZm9yZXN0OiBjbGFzc2lmaWNhdGlvblxuICAgICAgICAgICAgICAgICAgICAgTnVtYmVyIG9mIHRyZWVzOiAxZSswNVxuTm8uIG9mIHZhcmlhYmxlcyB0cmllZCBhdCBlYWNoIHNwbGl0OiAyXG4ifQ== -->
 <pre><code>
 Call:
  randomForest(x = x, y = y, ntree = ntree) 
                Type of random forest: classification
-                     Number of trees: 1000
+                     Number of trees: 1e+05
 No. of variables tried at each split: 2</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
@@ -1817,7 +1822,7 @@ No. of variables tried at each split: 2</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiNC4gUiBlbnZpcm9ubWVudCBpbiBBenVyZSBCYXRjaCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBSIHJ1bnRpbWUgZW52aXJvbm1lbnQgaW4gQXp1cmUgQmF0Y2gKCiMjIEluc3RhbGxpbmcgcGFja2FnZXMgZm9yIHlvdXIgcGFyYWxsZWwgcnVucwoKYGBge3IgZWNobyA9IEZBTFNFfQojIERpc2FibGUgdmVyYm9zZSBsb2dnaW5nCnNldFZlcmJvc2UoRkFMU0UpCnNldEh0dHBUcmFmZmljKEZBTFNFKQpgYGAKCk91ciBsYXN0IGNhbGwgdG8gQXp1cmUgQmF0Y2ggZmFpbGVkIGJlY2F1c2UgdGhlIHBhY2thZ2UgYHJhbmRvbUZvcmVzdGAgd2FzIGJlaW5nIHVzZWQsIGJ1dCB3YXMgbm90IGF2YWlsYWJsZSBvbiB0aGUgUiBydW50aW1lIGVudmlyb25tZW50IG9uIEF6dXJlIEJhdGNoLiBJdCBjYW4gYmUgaW5zdGFsbGVkIG9uIHRoZSBmbHkgdXNpbmcgdGhlIGBmb3JlYWNoYCBwYXJhbWV0ZXIgYC5wYWNrYWdlc2AKCmBgYHtyfQpyZiA8LSBmb3JlYWNoKG50cmVlID0gcmVwKDIwMCwgNSksIC5jb21iaW5lID0gY29tYmluZSwgLnBhY2thZ2VzID0gInJhbmRvbUZvcmVzdCIpICVkb3BhciUKICAgIHJhbmRvbUZvcmVzdCh4LCB5LCBudHJlZSA9IG50cmVlKQpyZgpgYGAKCgpOb3RlIHRoYXQgZXZlcnkgdGltZSB3ZSBleGVjdXRlIHRoZSBhYm92ZSBjaHVuaywgYSBuZXcgaW5zdGFsbGF0aW9uIG9mIHRoZSBwYWNrYWdlIGByYW5kb21Gb3Jlc3RgIGlzIHRyaWdnZXJlZC4KCiMjIFJ1bnRpbWUgZW52aXJvbm1lbnQgb2YgdGhlIGBkb0F6dXJlUGFyYWxsZWxgIGNsdXN0ZXIKPGJyPgpUaGUgUiBjb2RlIHRoYXQgd2Ugc2hpcCB0byBydW4gb24gdGhlIEF6dXJlIEJhdGNoIGNsdXN0ZXIgcnVucyBvbiBhIGRvY2tlciBjb250YWluZXIuIFRoaXMgZW5zdXJlcyBhIHN0YWJsZSBydW50aW1lIGVudmlyb25tZW50OiBhbGwgam9icyBydW5uaW5nIG9uIHRoZSBzYW1lIG5vZGUgcnVuIG9uIGEgbmV3IGNvbnRhaW5lci4gVGhlIGpvYnMgYXJlIGluZGVwZW5kZW50IGZyb20gZWFjaCBvdGhlciwgdGh1cyB0aGUgcGFzdCBqb2JzIGhpc3RvcnkgZG9lcyBub3QgYWZmZWN0IG5ldyBqb2JzLCBldmVuIGlmIHByZXZpb3VzIGpvYnMgZGlkIHRoaW5ncyBsaWtlIGluc3RhbGxpbmcgbmV3IHBhY2thZ2VzLgoKQSBkb2NrZXIgaW1hZ2UgaXMgc3BlY2lmaWVkIGF0IHRoZSB0aW1lIG9mIGNyZWF0aW5nIHRoZSBjbHVzdGVyLCBpbiB0aGUgZmlsZSBgY2x1c3Rlci5qc29uYC4gVGhlIGRlZmF1bHQgaW1hZ2UgaXMgInJvY2tlci90aWR5dmVyc2U6bGF0ZXN0Ii4KCiMjIEN1c3RvbWl6aW5nIHRoZSBkb2NrZXIgaW1hZ2UgZm9yIHRoZSBSIHJ1bnRpbWUKCkluc3RhbGxpbmcgcGFja2FnZXMgYXQgcnVudGltZSwgbGlrZSBpbiB0aGUgbGFzdCBleGFtcGxlLCBpcyBub3QgYSBjb252ZW5pZW50IHByYWN0aWNlLiBSZWN1cnJlbnQgcGFja2FnZXMgc2hvdWxkIHJhdGhlciBiZSBhZGRlZCB0byB0aGUgZG9ja2VyIGltYWdlIHVzZWQgZm9yIGFsbCBjb250YWluZXJzLiBgZG9BenVyZVBhcmFsbGVsYCBtYWtlcyB0aGlzIGVhc3kgYnkgYWxsb3dpbmcgc3BlY2lmaWNhdGlvbiBvZiBwYWNrYWdlcyBpbiBgY2x1c3Rlci5qc29uYC4gVmFyaW91cyBzb3VyY2VzIGFyZSBhbGxvd2VkOiBjcmFuLCBnaXRodWIsIGJpb2NvbmR1Y3Rvci4KCkl0IGlzIGFsc28gcG9zc2libGUgdG8gc3BlY2lmeSBhIGN1c3RvbSBjb250YWluZXIgaW1hZ2UgYWx0b2dldGhlci4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiNC4gUiBlbnZpcm9ubWVudCBpbiBBenVyZSBCYXRjaCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKIyBSIHJ1bnRpbWUgZW52aXJvbm1lbnQgaW4gQXp1cmUgQmF0Y2gKCiMjIEluc3RhbGxpbmcgcGFja2FnZXMgZm9yIHlvdXIgcGFyYWxsZWwgcnVucwoKYGBge3IgZWNobyA9IEZBTFNFfQojIERpc2FibGUgdmVyYm9zZSBsb2dnaW5nCnNldFZlcmJvc2UoRkFMU0UpCnNldEh0dHBUcmFmZmljKEZBTFNFKQpgYGAKCk91ciBsYXN0IGNhbGwgdG8gQXp1cmUgQmF0Y2ggZmFpbGVkIGJlY2F1c2UgdGhlIHBhY2thZ2UgYHJhbmRvbUZvcmVzdGAgd2FzIGJlaW5nIHVzZWQsIGJ1dCB3YXMgbm90IGF2YWlsYWJsZSBvbiB0aGUgUiBydW50aW1lIGVudmlyb25tZW50IG9uIEF6dXJlIEJhdGNoLiBJdCBjYW4gYmUgaW5zdGFsbGVkIG9uIHRoZSBmbHkgdXNpbmcgdGhlIGBmb3JlYWNoYCBwYXJhbWV0ZXIgYC5wYWNrYWdlc2AKCmBgYHtyfQpyZiA8LSBmb3JlYWNoKG50cmVlID0gcmVwKDEwMDAwLCAxMCksIC5jb21iaW5lID0gY29tYmluZSwgLnBhY2thZ2VzID0gInJhbmRvbUZvcmVzdCIpICVkb3BhciUKICAgIHJhbmRvbUZvcmVzdCh4LCB5LCBudHJlZSA9IG50cmVlKQpyZgpgYGAKCgpOb3RlIHRoYXQgZXZlcnkgdGltZSB3ZSBleGVjdXRlIHRoZSBhYm92ZSBjaHVuaywgYSBuZXcgaW5zdGFsbGF0aW9uIG9mIHRoZSBwYWNrYWdlIGByYW5kb21Gb3Jlc3RgIGlzIHRyaWdnZXJlZC4KCiMjIFJ1bnRpbWUgZW52aXJvbm1lbnQgb2YgdGhlIGBkb0F6dXJlUGFyYWxsZWxgIGNsdXN0ZXIKPGJyPgpUaGUgUiBjb2RlIHRoYXQgd2Ugc2hpcCB0byBydW4gb24gdGhlIEF6dXJlIEJhdGNoIGNsdXN0ZXIgcnVucyBvbiBhIGRvY2tlciBjb250YWluZXIuIFRoaXMgZW5zdXJlcyBhIHN0YWJsZSBydW50aW1lIGVudmlyb25tZW50OiBhbGwgam9icyBydW5uaW5nIG9uIHRoZSBzYW1lIG5vZGUgcnVuIG9uIGEgbmV3IGNvbnRhaW5lci4gVGhlIGpvYnMgYXJlIGluZGVwZW5kZW50IGZyb20gZWFjaCBvdGhlciwgdGh1cyB0aGUgcGFzdCBqb2JzIGhpc3RvcnkgZG9lcyBub3QgYWZmZWN0IG5ldyBqb2JzLCBldmVuIGlmIHByZXZpb3VzIGpvYnMgZGlkIHRoaW5ncyBsaWtlIGluc3RhbGxpbmcgbmV3IHBhY2thZ2VzLgoKQSBkb2NrZXIgaW1hZ2UgaXMgc3BlY2lmaWVkIGF0IHRoZSB0aW1lIG9mIGNyZWF0aW5nIHRoZSBjbHVzdGVyLCBpbiB0aGUgZmlsZSBgY2x1c3Rlci5qc29uYC4gVGhlIGRlZmF1bHQgaW1hZ2UgaXMgInJvY2tlci90aWR5dmVyc2U6bGF0ZXN0Ii4KCiMjIEN1c3RvbWl6aW5nIHRoZSBkb2NrZXIgaW1hZ2UgZm9yIHRoZSBSIHJ1bnRpbWUKCkluc3RhbGxpbmcgcGFja2FnZXMgYXQgcnVudGltZSwgbGlrZSBpbiB0aGUgbGFzdCBleGFtcGxlLCBpcyBub3QgYSBjb252ZW5pZW50IHByYWN0aWNlLiBSZWN1cnJlbnQgcGFja2FnZXMgc2hvdWxkIHJhdGhlciBiZSBhZGRlZCB0byB0aGUgZG9ja2VyIGltYWdlIHVzZWQgZm9yIGFsbCBjb250YWluZXJzLiBgZG9BenVyZVBhcmFsbGVsYCBtYWtlcyB0aGlzIGVhc3kgYnkgYWxsb3dpbmcgc3BlY2lmaWNhdGlvbiBvZiBwYWNrYWdlcyBpbiBgY2x1c3Rlci5qc29uYC4gVmFyaW91cyBzb3VyY2VzIGFyZSBhbGxvd2VkOiBjcmFuLCBnaXRodWIsIGJpb2NvbmR1Y3Rvci4KCkl0IGlzIGFsc28gcG9zc2libGUgdG8gc3BlY2lmeSBhIGN1c3RvbSBjb250YWluZXIgaW1hZ2UgYWx0b2dldGhlci4K</div>
 
 
 

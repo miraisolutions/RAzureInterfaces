@@ -33,7 +33,7 @@ There are multiple packages that implement functionality to create and register 
 
 
 Example: local cluster with `doParallel`:
-```{r}
+```{r eval = TRUE}
 library(doParallel)
 local_cluster <- parallel::makeCluster(4)
 registerDoParallel(local_cluster)

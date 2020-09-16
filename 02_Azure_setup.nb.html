@@ -1788,13 +1788,13 @@ library(doAzureParallel)</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2V0Q3JlZGVudGlhbHMoXCJjcmVkZW50aWFscy5qc29uXCIpXG5gYGAifQ== -->
 <pre class="r"><code>setCredentials(&quot;credentials.json&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuQmF0Y2ggQWNjb3VudDogbWlyYWliYXRjaFxuQmF0Y2ggQWNjb3VudCBVcmw6IGh0dHBzOi8vbWlyYWliYXRjaC5ub3J0aGV1cm9wZS5iYXRjaC5henVyZS5jb21cblN0b3JhZ2UgQWNjb3VudDogcmF6dXJlaW50ZXJmYWNlc1xuU3RvcmFnZSBBY2NvdW50IFVybDogaHR0cHM6Ly9yYXp1cmVpbnRlcmZhY2VzLmJsb2IuY29yZS53aW5kb3dzLm5ldFxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuWW91ciBjcmVkZW50aWFscyBoYXZlIGJlZW4gc3VjY2Vzc2Z1bGx5IHNldC5cbiJ9 -->
-<pre><code>=====================================================================================
+<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbkJhdGNoIEFjY291bnQ6IG1pcmFpYmF0Y2hcbkJhdGNoIEFjY291bnQgVXJsOiBodHRwczovL21pcmFpYmF0Y2gubm9ydGhldXJvcGUuYmF0Y2guYXp1cmUuY29tXG5TdG9yYWdlIEFjY291bnQ6IHJhenVyZWludGVyZmFjZXNcblN0b3JhZ2UgQWNjb3VudCBVcmw6IGh0dHBzOi8vcmF6dXJlaW50ZXJmYWNlcy5ibG9iLmNvcmUud2luZG93cy5uZXRcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5Zb3VyIGNyZWRlbnRpYWxzIGhhdmUgYmVlbiBzdWNjZXNzZnVsbHkgc2V0LlxuIn0= -->
+<pre><code>=============================================================================================================================
 Batch Account: miraibatch
 Batch Account Url: https://miraibatch.northeurope.batch.azure.com
 Storage Account: razureinterfaces
 Storage Account Url: https://razureinterfaces.blob.core.windows.net
-=====================================================================================
+=============================================================================================================================
 Your credentials have been successfully set.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
@@ -1823,12 +1823,55 @@ Your credentials have been successfully set.</code></pre>
 <p>Create your cluster if it does not exist; this takes a few minutes. Alternatively get your cluster configuration from the Batch account</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgY29uZmlndXJhdGlvbiBmcm9tIEF6dXJlXG5jbHVzdGVyIDwtIGdldENsdXN0ZXIoXCJyYWlwb29sXCIpXG4jIENyZWF0ZSBuZXcgY2x1c3RlciBmcm9tIGNvbmZpZ3VyYXRpb24gZmlsZVxuY2x1c3RlciA8LSBtYWtlQ2x1c3RlcihcImNsdXN0ZXIuanNvblwiKSBcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBHZXQgY29uZmlndXJhdGlvbiBmcm9tIEF6dXJlXG5jbHVzdGVyIDwtIGdldENsdXN0ZXIoXCJyYWlwb29sXCIpXG5gYGAifQ== -->
 <pre class="r"><code># Get configuration from Azure
-cluster &lt;- getCluster(&quot;raipool&quot;)
-# Create new cluster from configuration file
+cluster &lt;- getCluster(&quot;raipool&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5ub2Rlczpcblx0aWRsZTogICAgICAgICAgICAgICAgNVxuXHRjcmVhdGluZzogICAgICAgICAgICAwXG5cdHN0YXJ0aW5nOiAgICAgICAgICAgIDBcblx0d2FpdGluZ2ZvcnN0YXJ0dGFzazogMFxuXHRzdGFydHRhc2tmYWlsZWQ6ICAgICAwXG5cdHByZWVtcHRlZDogICAgICAgICAgIDBcblx0cnVubmluZzogICAgICAgICAgICAgMFxuXHRvdGhlcjogICAgICAgICAgICAgICAwXG5Zb3VyIGNsdXN0ZXIgaGFzIGJlZW4gcmVnaXN0ZXJlZC5cbkRlZGljYXRlZCBOb2RlIENvdW50OiA1XG5Mb3cgUHJpb3JpdHkgTm9kZSBDb3VudDogMFxuIn0= -->
+<pre><code>
+nodes:
+    idle:                5
+    creating:            0
+    starting:            0
+    waitingforstarttask: 0
+    starttaskfailed:     0
+    preempted:           0
+    running:             0
+    other:               0
+Your cluster has been registered.
+Dedicated Node Count: 5
+Low Priority Node Count: 0</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDcmVhdGUgbmV3IGNsdXN0ZXIgZnJvbSBjb25maWd1cmF0aW9uIGZpbGVcbmNsdXN0ZXIgPC0gbWFrZUNsdXN0ZXIoXCJjbHVzdGVyLmpzb25cIikgXG5gYGAifQ== -->
+<pre class="r"><code># Create new cluster from configuration file
 cluster &lt;- makeCluster(&quot;cluster.json&quot;) </code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbk5hbWU6IHJhaXBvb2xcbkNvbmZpZ3VyYXRpb246XG5cdERvY2tlciBJbWFnZTogcm9ja2VyL3RpZHl2ZXJzZTpsYXRlc3Rcblx0TWF4VGFza3NQZXJOb2RlOiAyXG5cdE5vZGUgU2l6ZTogU3RhbmRhcmRfRDJfdjJcblNjYWxlOlxuXHRBdXRvc2NhbGUgRm9ybXVsYTogUVVFVUVcblx0RGVkaWNhdGVkOlxuXHRcdE1pbjogNVxuXHRcdE1heDogNVxuXHRMb3cgUHJpb3JpdHk6XG5cdFx0TWluOiAwXG5cdFx0TWF4OiAwXG49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuIn0= -->
+<pre><code>=============================================================================================================================
+Name: raipool
+Configuration:
+    Docker Image: rocker/tidyverse:latest
+    MaxTasksPerNode: 2
+    Node Size: Standard_D2_v2
+Scale:
+    Autoscale Formula: QUEUE
+    Dedicated:
+        Min: 5
+        Max: 5
+    Low Priority:
+        Min: 0
+        Max: 0
+=============================================================================================================================</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQ29uZmxpY3QgKEhUVFAgNDA5KS5cbiJ9 -->
+<pre><code>Conflict (HTTP 409).</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlIHNwZWNpZmllZCBjbHVzdGVyICdyYWlwb29sJyBhbHJlYWR5IGV4aXN0cy4gQ2x1c3RlciAncmFpcG9vbCcgd2lsbCBiZSB1c2VkLlxuWW91ciBjbHVzdGVyIGhhcyBiZWVuIHJlZ2lzdGVyZWQuXG5EZWRpY2F0ZWQgTm9kZSBDb3VudDogNVxuTG93IFByaW9yaXR5IE5vZGUgQ291bnQ6IDBcbiJ9 -->
+<pre><code>The specified cluster 'raipool' already exists. Cluster 'raipool' will be used.
+Your cluster has been registered.
+Dedicated Node Count: 5
+Low Priority Node Count: 0</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Beware of open issue <a href="https://github.com/Azure/doAzureParallel/issues/330">#330</a> in package <code>doAzureParallel</code>. Registering a cluster that has been obtained with <code>getCluster</code> results in a not obvious misconfiguration of the cluster. In current version, this issue can be worked around by creating the cluster (again) before registering. That is, running the chunk above. The cluster will in fact not be re-created, but the metadata will be fixed.</p>
@@ -1854,15 +1897,15 @@ getDoParWorkers()</code></pre>
 <pre class="r"><code># Hello world
 foreach(i=1:5) %dopar% sprintf(&quot;Hello World from node %s&quot;, i)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuSWQ6IGpvYjIwMjAwOTE1MjIzNTI3XG5jaHVua1NpemU6IDFcbmVuYWJsZUNsb3VkQ29tYmluZTogVFJVRVxuZXJyb3JIYW5kbGluZzogc3RvcFxud2FpdDogVFJVRVxuYXV0b0RlbGV0ZUpvYjogVFJVRVxuPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PVxuXG5TdWJtaXR0aW5nIHRhc2tzICgxLzUpXG5TdWJtaXR0aW5nIHRhc2tzICgyLzUpXG5TdWJtaXR0aW5nIHRhc2tzICgzLzUpXG5TdWJtaXR0aW5nIHRhc2tzICg0LzUpXG5TdWJtaXR0aW5nIHRhc2tzICg1LzUpXG5TdWJtaXR0aW5nIG1lcmdlIHRhc2suIC4gLlxuV2FpdGluZyBmb3IgdGFza3MgdG8gY29tcGxldGUuIC4gLlxuXG58IFByb2dyZXNzOiAwLjAwJSAoMC81KSB8IFJ1bm5pbmc6IDAgfCBRdWV1ZWQ6IDAgfCBDb21wbGV0ZWQ6IDAgfCBGYWlsZWQ6IDAgfFxufCBQcm9ncmVzczogMTAwLjAwJSAoNS81KSB8IFJ1bm5pbmc6IDAgfCBRdWV1ZWQ6IDAgfCBDb21wbGV0ZWQ6IDUgfCBGYWlsZWQ6IDAgfFxuVGFza3MgaGF2ZSBjb21wbGV0ZWQuIE1lcmdpbmcgcmVzdWx0cy4uIENvbXBsZXRlZC5cbiRgMWBcblsxXSBcIkhlbGxvIFdvcmxkIGZyb20gbm9kZSAxXCJcblxuJGAyYFxuWzFdIFwiSGVsbG8gV29ybGQgZnJvbSBub2RlIDJcIlxuXG4kYDNgXG5bMV0gXCJIZWxsbyBXb3JsZCBmcm9tIG5vZGUgM1wiXG5cbiRgNGBcblsxXSBcIkhlbGxvIFdvcmxkIGZyb20gbm9kZSA0XCJcblxuJGA1YFxuWzFdIFwiSGVsbG8gV29ybGQgZnJvbSBub2RlIDVcIlxuIn0= -->
-<pre><code>=====================================================================================
-Id: job20200915223527
+<!-- rnb-output-begin eyJkYXRhIjoiPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT1cbklkOiBqb2IyMDIwMDkxNjEwNDQyMlxuY2h1bmtTaXplOiAxXG5lbmFibGVDbG91ZENvbWJpbmU6IFRSVUVcbmVycm9ySGFuZGxpbmc6IHN0b3BcbndhaXQ6IFRSVUVcbmF1dG9EZWxldGVKb2I6IFRSVUVcbj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09XG5cblN1Ym1pdHRpbmcgdGFza3MgKDEvNSlcblN1Ym1pdHRpbmcgdGFza3MgKDIvNSlcblN1Ym1pdHRpbmcgdGFza3MgKDMvNSlcblN1Ym1pdHRpbmcgdGFza3MgKDQvNSlcblN1Ym1pdHRpbmcgdGFza3MgKDUvNSlcblN1Ym1pdHRpbmcgbWVyZ2UgdGFzay4gLiAuXG5XYWl0aW5nIGZvciB0YXNrcyB0byBjb21wbGV0ZS4gLiAuXG5cbnwgUHJvZ3Jlc3M6IDAuMDAlICgwLzUpIHwgUnVubmluZzogMCB8IFF1ZXVlZDogMCB8IENvbXBsZXRlZDogMCB8IEZhaWxlZDogMCB8XG4ifQ== -->
+<pre><code>=============================================================================================================================
+Id: job20200916104422
 chunkSize: 1
 enableCloudCombine: TRUE
 errorHandling: stop
 wait: TRUE
 autoDeleteJob: TRUE
-=====================================================================================
+=============================================================================================================================
 
 Submitting tasks (1/5)
 Submitting tasks (2/5)
@@ -1872,23 +1915,7 @@ Submitting tasks (5/5)
 Submitting merge task. . .
 Waiting for tasks to complete. . .
 
-| Progress: 0.00% (0/5) | Running: 0 | Queued: 0 | Completed: 0 | Failed: 0 |
-| Progress: 100.00% (5/5) | Running: 0 | Queued: 0 | Completed: 5 | Failed: 0 |
-Tasks have completed. Merging results.. Completed.
-$`1`
-[1] &quot;Hello World from node 1&quot;
-
-$`2`
-[1] &quot;Hello World from node 2&quot;
-
-$`3`
-[1] &quot;Hello World from node 3&quot;
-
-$`4`
-[1] &quot;Hello World from node 4&quot;
-
-$`5`
-[1] &quot;Hello World from node 5&quot;</code></pre>
+| Progress: 0.00% (0/5) | Running: 0 | Queued: 0 | Completed: 0 | Failed: 0 |</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -1896,7 +1923,7 @@ $`5`
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiMi4gQXp1cmUgc2V0dXAiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMgQXp1cmUgc2V0dXAKPGJyPgpXZSB3aWxsIG5vdyB1c2UgdGhlIHBhY2thZ2UgYGRvQXp1cmVQYXJhbGxlbGAgdG8gaW50ZXJhY3Qgd2l0aCBhbiBBenVyZSBzdWJzY3JpcHRpb24uCgpZb3Ugd2lsbCBuZWVkIHRvIGhhdmUgYSB2YWxpZCBBenVyZSBzdWJzY3JpcHRpb24gd2l0aCBhY2Nlc3MgdG8gdGhlIHJlc291cmNlcyB3ZSB3aWxsIHVzZSBpbiB0aGlzIGV4YW1wbGU6IGFuIEF6dXJlIEJhdGNoIGFjY291bnQgYW5kIGEgc3RvcmFnZSBhY2NvdW50LgoKRmlyc3QgdGhpbmcgaXMgdG8gaW5zdGFsbCB0aGUgcGFja2FnZSBhbmQgaXRzIGRlcGVuZGVuY3kgYHJBenVyZUJhdGNoYApgYGB7ciBldmFsID0gRkFMU0V9CmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiQXp1cmUvckF6dXJlQmF0Y2giLCByZWYgPSAidjAuNy4wIikgCmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiQXp1cmUvZG9BenVyZVBhcmFsbGVsIiwgcmVmID0gInYwLjguMCIpIApsaWJyYXJ5KGRvQXp1cmVQYXJhbGxlbCkKYGBgCgojIyBBenVyZSBjcmVkZW50aWFscwo8YnI+CkdlbmVyYXRlIGEgY3JlZGVudGlhbHMgY29uZmlndXJhdGlvbiBmaWxlICh0ZW1wbGF0ZSkKYGBge3J9CmdlbmVyYXRlQ3JlZGVudGlhbHNDb25maWcoImNyZWRlbnRpYWxzLmpzb24iKQpgYGAKCjxicj4KRWRpdCB0aGUgZmlsZSB3aXRoIHlvdXIgb3duIEF6dXJlIGNyZWRlbnRpYWxzOgoKLSBCYXRjaCBhY2NvdW50IG5hbWUKLSBCYXRjaCBhY2NvdW50IGtleTogUHJpbWFyeSBhY2Nlc3Mga2V5Ci0gQmF0Y2ggYWNjb3VudCBVUkwKLSBTdG9yYWdlIGFjY291bnQgbmFtZQotIFN0b3JhZ2UgYWNjb3VudCBrZXkKCllvdSBmaW5kIHRoZSBhYm92ZSBpbiB0aGUgX0tleXNfIHNlY3Rpb24gb2YgeW91ciBCYXRjaCBhbmQgU3RvcmFnZSBhY2NvdW50cyBpbiB0aGUgW0F6dXJlIHBvcnRhbF0oaHR0cHM6Ly9wb3J0YWwuYXp1cmUuY29tLykKCjxicj4KTmV4dCwgc2V0IHlvdXIgY3JlZGVudGlhbHMgaW4gdGhlIGN1cnJlbnQgUiBzZXNzaW9uLgpgYGB7cn0Kc2V0Q3JlZGVudGlhbHMoImNyZWRlbnRpYWxzLmpzb24iKQpgYGAKPGJyPgpJZiBzdWNjZXNzZnVsLCB5b3UgY2FuIHNlZSBhIG5ldyBvcHRpb24gd2l0aCBpbmZvcm1hdGlvbiBvZiB5b3VyIEF6dXJlIGFjY291bnQuCmBgYHtyIGV2YWwgPSBGQUxTRX0KZ2V0T3B0aW9uKCJhel9jb25maWciKQpgYGAKCjxicj4KCiMjIEF6dXJlIEJhdGNoIHBvb2wKCjxicj4KR2VuZXJhdGUgYSBjbHVzdGVyIGNvbmZpZ3VyYXRpb24gZmlsZSAodGVtcGxhdGUpCmBgYHtyfQpnZW5lcmF0ZUNsdXN0ZXJDb25maWcoImNsdXN0ZXIuanNvbiIpCmBgYAo8YnI+CkVkaXQgdGhlIGNsdXN0ZXIgY29uZmlndXJhdGlvbiBmaWxlIHdpdGggeW91ciBkZXNpcmVkIGNvbmZpZ3VyYXRpb24uCgpDcmVhdGUgeW91ciBjbHVzdGVyIGlmIGl0IGRvZXMgbm90IGV4aXN0OyB0aGlzIHRha2VzIGEgZmV3IG1pbnV0ZXMuIEFsdGVybmF0aXZlbHkgZ2V0IHlvdXIgY2x1c3RlciBjb25maWd1cmF0aW9uIGZyb20gdGhlIEJhdGNoIGFjY291bnQKYGBge3J9CiMgR2V0IGNvbmZpZ3VyYXRpb24gZnJvbSBBenVyZQpjbHVzdGVyIDwtIGdldENsdXN0ZXIoInJhaXBvb2wiKQojIENyZWF0ZSBuZXcgY2x1c3RlciBmcm9tIGNvbmZpZ3VyYXRpb24gZmlsZQpjbHVzdGVyIDwtIG1ha2VDbHVzdGVyKCJjbHVzdGVyLmpzb24iKSAKYGBgCgpCZXdhcmUgb2Ygb3BlbiBpc3N1ZSBbIzMzMF0oaHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2RvQXp1cmVQYXJhbGxlbC9pc3N1ZXMvMzMwKSBpbiBwYWNrYWdlIGBkb0F6dXJlUGFyYWxsZWxgLiBSZWdpc3RlcmluZyBhIGNsdXN0ZXIgdGhhdCBoYXMgYmVlbiBvYnRhaW5lZCB3aXRoIGBnZXRDbHVzdGVyYCByZXN1bHRzIGluIGEgbm90IG9idmlvdXMgbWlzY29uZmlndXJhdGlvbiBvZiB0aGUgY2x1c3Rlci4gSW4gY3VycmVudCB2ZXJzaW9uLCB0aGlzIGlzc3VlIGNhbiBiZSB3b3JrZWQgYXJvdW5kIGJ5IGNyZWF0aW5nIHRoZSBjbHVzdGVyIChhZ2FpbikgYmVmb3JlIHJlZ2lzdGVyaW5nLiBUaGF0IGlzLCBydW5uaW5nIHRoZSBjaHVuayBhYm92ZS4gVGhlIGNsdXN0ZXIgd2lsbCBpbiBmYWN0IG5vdCBiZSByZS1jcmVhdGVkLCBidXQgdGhlIG1ldGFkYXRhIHdpbGwgYmUgZml4ZWQuCgpGaW5hbGx5LCByZWdpc3RlciB5b3VyIEF6dXJlIGNsdXN0ZXIgYXMgdGhlIHBhcmFsbGVsIGJhY2tlbmQgZm9yIGBmb3JlYWNoYApgYGB7cn0KcmVnaXN0ZXJEb0F6dXJlUGFyYWxsZWwoY2x1c3RlcikKYGBgCgpDaGVjayB0aGF0IHlvdSB0aGUgY2x1c3RlciBpcyBhdmFpbGFibGUKYGBge3J9CiMgTnVtYmVyIG9mIGV4ZWN1dGlvbiB3b3JrZXJzIGN1cnJlbnRseSByZWdpc3RlcmVkIGluIHRoZSBkb1BhciBiYWNrZW5kCmdldERvUGFyV29ya2VycygpCiMgSGVsbG8gd29ybGQKZm9yZWFjaChpPTE6NSkgJWRvcGFyJSBzcHJpbnRmKCJIZWxsbyBXb3JsZCBmcm9tIG5vZGUgJXMiLCBpKQpgYGAKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiMi4gQXp1cmUgc2V0dXAiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMgQXp1cmUgc2V0dXAKPGJyPgpXZSB3aWxsIG5vdyB1c2UgdGhlIHBhY2thZ2UgYGRvQXp1cmVQYXJhbGxlbGAgdG8gaW50ZXJhY3Qgd2l0aCBhbiBBenVyZSBzdWJzY3JpcHRpb24uCgpZb3Ugd2lsbCBuZWVkIHRvIGhhdmUgYSB2YWxpZCBBenVyZSBzdWJzY3JpcHRpb24gd2l0aCBhY2Nlc3MgdG8gdGhlIHJlc291cmNlcyB3ZSB3aWxsIHVzZSBpbiB0aGlzIGV4YW1wbGU6IGFuIEF6dXJlIEJhdGNoIGFjY291bnQgYW5kIGEgc3RvcmFnZSBhY2NvdW50LgoKRmlyc3QgdGhpbmcgaXMgdG8gaW5zdGFsbCB0aGUgcGFja2FnZSBhbmQgaXRzIGRlcGVuZGVuY3kgYHJBenVyZUJhdGNoYApgYGB7ciBldmFsID0gRkFMU0V9CmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiQXp1cmUvckF6dXJlQmF0Y2giLCByZWYgPSAidjAuNy4wIikgCmRldnRvb2xzOjppbnN0YWxsX2dpdGh1YigiQXp1cmUvZG9BenVyZVBhcmFsbGVsIiwgcmVmID0gInYwLjguMCIpIApsaWJyYXJ5KGRvQXp1cmVQYXJhbGxlbCkKYGBgCgojIyBBenVyZSBjcmVkZW50aWFscwo8YnI+CkdlbmVyYXRlIGEgY3JlZGVudGlhbHMgY29uZmlndXJhdGlvbiBmaWxlICh0ZW1wbGF0ZSkKYGBge3J9CmdlbmVyYXRlQ3JlZGVudGlhbHNDb25maWcoImNyZWRlbnRpYWxzLmpzb24iKQpgYGAKCjxicj4KRWRpdCB0aGUgZmlsZSB3aXRoIHlvdXIgb3duIEF6dXJlIGNyZWRlbnRpYWxzOgoKLSBCYXRjaCBhY2NvdW50IG5hbWUKLSBCYXRjaCBhY2NvdW50IGtleTogUHJpbWFyeSBhY2Nlc3Mga2V5Ci0gQmF0Y2ggYWNjb3VudCBVUkwKLSBTdG9yYWdlIGFjY291bnQgbmFtZQotIFN0b3JhZ2UgYWNjb3VudCBrZXkKCllvdSBmaW5kIHRoZSBhYm92ZSBpbiB0aGUgX0tleXNfIHNlY3Rpb24gb2YgeW91ciBCYXRjaCBhbmQgU3RvcmFnZSBhY2NvdW50cyBpbiB0aGUgW0F6dXJlIHBvcnRhbF0oaHR0cHM6Ly9wb3J0YWwuYXp1cmUuY29tLykKCjxicj4KTmV4dCwgc2V0IHlvdXIgY3JlZGVudGlhbHMgaW4gdGhlIGN1cnJlbnQgUiBzZXNzaW9uLgpgYGB7cn0Kc2V0Q3JlZGVudGlhbHMoImNyZWRlbnRpYWxzLmpzb24iKQpgYGAKPGJyPgpJZiBzdWNjZXNzZnVsLCB5b3UgY2FuIHNlZSBhIG5ldyBvcHRpb24gd2l0aCBpbmZvcm1hdGlvbiBvZiB5b3VyIEF6dXJlIGFjY291bnQuCmBgYHtyIGV2YWwgPSBGQUxTRX0KZ2V0T3B0aW9uKCJhel9jb25maWciKQpgYGAKCjxicj4KCiMjIEF6dXJlIEJhdGNoIHBvb2wKCjxicj4KR2VuZXJhdGUgYSBjbHVzdGVyIGNvbmZpZ3VyYXRpb24gZmlsZSAodGVtcGxhdGUpCmBgYHtyfQpnZW5lcmF0ZUNsdXN0ZXJDb25maWcoImNsdXN0ZXIuanNvbiIpCmBgYAo8YnI+CkVkaXQgdGhlIGNsdXN0ZXIgY29uZmlndXJhdGlvbiBmaWxlIHdpdGggeW91ciBkZXNpcmVkIGNvbmZpZ3VyYXRpb24uCgpDcmVhdGUgeW91ciBjbHVzdGVyIGlmIGl0IGRvZXMgbm90IGV4aXN0OyB0aGlzIHRha2VzIGEgZmV3IG1pbnV0ZXMuIEFsdGVybmF0aXZlbHkgZ2V0IHlvdXIgY2x1c3RlciBjb25maWd1cmF0aW9uIGZyb20gdGhlIEJhdGNoIGFjY291bnQKYGBge3J9CiMgR2V0IGNvbmZpZ3VyYXRpb24gZnJvbSBBenVyZQpjbHVzdGVyIDwtIGdldENsdXN0ZXIoInJhaXBvb2wiKQojIENyZWF0ZSBuZXcgY2x1c3RlciBmcm9tIGNvbmZpZ3VyYXRpb24gZmlsZQpjbHVzdGVyIDwtIG1ha2VDbHVzdGVyKCJjbHVzdGVyLmpzb24iKSAKYGBgCgpCZXdhcmUgb2Ygb3BlbiBpc3N1ZSBbIzMzMF0oaHR0cHM6Ly9naXRodWIuY29tL0F6dXJlL2RvQXp1cmVQYXJhbGxlbC9pc3N1ZXMvMzMwKSBpbiBwYWNrYWdlIGBkb0F6dXJlUGFyYWxsZWxgLiBSZWdpc3RlcmluZyBhIGNsdXN0ZXIgdGhhdCBoYXMgYmVlbiBvYnRhaW5lZCB3aXRoIGBnZXRDbHVzdGVyYCByZXN1bHRzIGluIGEgbm90IG9idmlvdXMgbWlzY29uZmlndXJhdGlvbiBvZiB0aGUgY2x1c3Rlci4gSW4gY3VycmVudCB2ZXJzaW9uLCB0aGlzIGlzc3VlIGNhbiBiZSB3b3JrZWQgYXJvdW5kIGJ5IGNyZWF0aW5nIHRoZSBjbHVzdGVyIChhZ2FpbikgYmVmb3JlIHJlZ2lzdGVyaW5nLiBUaGF0IGlzLCBydW5uaW5nIHRoZSBjaHVuayBhYm92ZS4gVGhlIGNsdXN0ZXIgd2lsbCBpbiBmYWN0IG5vdCBiZSByZS1jcmVhdGVkLCBidXQgdGhlIG1ldGFkYXRhIHdpbGwgYmUgZml4ZWQuCgpGaW5hbGx5LCByZWdpc3RlciB5b3VyIEF6dXJlIGNsdXN0ZXIgYXMgdGhlIHBhcmFsbGVsIGJhY2tlbmQgZm9yIGBmb3JlYWNoYApgYGB7cn0KcmVnaXN0ZXJEb0F6dXJlUGFyYWxsZWwoY2x1c3RlcikKYGBgCgpDaGVjayB0aGF0IHlvdSB0aGUgY2x1c3RlciBpcyBhdmFpbGFibGUKYGBge3IgZXZhbCA9IFRSVUV9CiMgTnVtYmVyIG9mIGV4ZWN1dGlvbiB3b3JrZXJzIGN1cnJlbnRseSByZWdpc3RlcmVkIGluIHRoZSBkb1BhciBiYWNrZW5kCmdldERvUGFyV29ya2VycygpCiMgSGVsbG8gd29ybGQKZm9yZWFjaChpPTE6NSkgJWRvcGFyJSBzcHJpbnRmKCJIZWxsbyBXb3JsZCBmcm9tIG5vZGUgJXMiLCBpKQpgYGAKCgo=</div>
 
 
 

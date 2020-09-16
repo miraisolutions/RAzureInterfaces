@@ -5,8 +5,28 @@ output: html_notebook
 
 # Accessing the Azure Storage
 
-## Mounting Azure File Shares
+## Fetching files from the cluster
+Lets modify the closing prices example and write on disk results of each iteration
+```{r eval = TRUE}
+n <- 100000
+iterations <- 10
+closingPrices <- foreach(i = seq(iterations), .combine = "c") %dopar% {
+    results <- replicate(n/iterations, getClosingPrice())
+    results_file <- sprintf("results_iteration_%s.csv", i)
+    write.csv(results, results_file, row.names = FALSE)
+    return(results)
+}
+hist(closingPrices)
+```
 
+
+Now lets download the files generated.
+
+```{r eval = FALSE}
+getJobFile(jobId = "job20200916105340", taskId = 1, filePath = results_file, downloadPath = "results_file_iteration_1.csv")
+```
+
+## Mounting Azure File Shares
 
 ## Distributed computing
 

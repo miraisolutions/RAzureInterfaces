@@ -73,7 +73,7 @@ registerDoAzureParallel(cluster)
 ```
 
 Check that you the cluster is available
-```{r}
+```{r eval = TRUE}
 # Number of execution workers currently registered in the doPar backend
 getDoParWorkers()
 # Hello world

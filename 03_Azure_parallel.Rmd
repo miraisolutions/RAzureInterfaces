@@ -19,15 +19,18 @@ Lets create a random forest model with 1000 trees. We will plit up the problem i
 We first run it locally. 
 ```{r}
 library(randomForest)
-rf <- foreach(ntree = rep(200, 5), .combine = combine) %do%
+rf <- foreach(ntree = rep(10000, 5), .combine = combine) %do%
     randomForest(x, y, ntree = ntree)
 rf
 ```
 <br>
 Now lets run the same on the registered parallel backend. What about the package `randomForest`? Is it in the Azure Batch pool?
+
+The following block will throw an error
 ```{r}
-rf <- foreach(ntree = rep(200, 5), .combine = combine) %dopar%
+rf <- foreach(ntree = rep(10000, 5), .combine = combine) %dopar%
     randomForest(x, y, ntree = ntree)
+rf
 ```
 
 
