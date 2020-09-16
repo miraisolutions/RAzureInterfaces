@@ -60,3 +60,6 @@ hist(closingPrices_s)
 
 ```{r child = '05_Azure_storage_and_distribution.Rmd'}
 ```
+
+```{r child = '06_References.Rmd'}
+```
