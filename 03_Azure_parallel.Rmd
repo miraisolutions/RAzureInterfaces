@@ -28,7 +28,7 @@ Now lets run the same on the registered parallel backend. What about the package
 
 The following block will throw an error
 ```{r}
-rf <- foreach(ntree = rep(10000, 5), .combine = combine) %dopar%
+rf <- foreach(ntree = rep(10000, 5), .combine = combine, .errorhandling = "pass") %dopar%
     randomForest(x, y, ntree = ntree)
 rf
 ```

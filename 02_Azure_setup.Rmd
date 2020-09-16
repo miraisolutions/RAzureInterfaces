@@ -10,7 +10,7 @@ We will now use the package `doAzureParallel` to interact with an Azure subscrip
 You will need to have a valid Azure subscription with access to the resources we will use in this example: an Azure Batch account and a storage account.
 
 First thing is to install the package and its dependency `rAzureBatch`
-```{r eval = FALSE}
+```{r eval = TRUE}
 devtools::install_github("Azure/rAzureBatch", ref = "v0.7.0") 
 devtools::install_github("Azure/doAzureParallel", ref = "v0.8.0") 
 library(doAzureParallel)
