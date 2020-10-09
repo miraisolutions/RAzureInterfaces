@@ -21,12 +21,10 @@ hist(closingPrices)
 
 
 Now lets download the files generated.
-
-```{r eval = FALSE}
-getJobFile(jobId = "job20200916105340", taskId = 1, filePath = results_file, downloadPath = "results_file_iteration_1.csv")
-```
+_To do_
 
 ## Mounting Azure File Shares
+_To do_
 
 ## Distributed computing
-
+_To do_
