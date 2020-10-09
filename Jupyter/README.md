@@ -9,7 +9,7 @@ The file can be open either on:
 
 ## Installing and configuring a local Jupyter Notebook server with R support
 
-These instructions are an excerpt for ```conda``` from the links provided. Detailed instructions, and instructions for ```pip``` can be found in the links.
+These instructions are an excerpt for `conda` from the links provided. Detailed instructions, and instructions for `pip` can be found in the links.
 
 1. [Install Anaconda](https://docs.anaconda.com/anaconda/install/)
 2. Install an R kernel for Jupyter, [IRkernel](https://irkernel.github.io/installation/)
